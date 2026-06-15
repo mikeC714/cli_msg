@@ -5,11 +5,12 @@ const { MAGIC, TYPES } = require("../../types.js");
 
 
 test.describe("Testing Accumulator", () => {
-	const mockPayload = Buffer.from("Hello World!");
+	const mockPayload = Buffer.from(JSON.stringify({user: "userA", pass: "123safe"}));
+
+	const acc = new Acc();
 	
 	test.it("should return {type, payload}",() => {
-		const acc = new Acc();
-		acc.on("data", ({ type, payload }) => {
+		acc.on("payload", ({ type, payload }) => {
 			assert.strictEqual(type, TYPES.MSG);
 			assert.deepStrictEqual(payload, mockPayload);
 		});
@@ -22,6 +23,7 @@ test.describe("Testing Accumulator", () => {
 		const packet = Buffer.concat([header, mockPayload])
 		acc.collect(packet);
 	})
+
 })
 
 

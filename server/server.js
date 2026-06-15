@@ -22,14 +22,27 @@ const USERS = new Map();
 
 
 const server = net.createServer((socket) => {
-	console.log("Client Connected");
-	socket.write("Whats'up Server.")
-	
 	let user;
-	socket.on('data', (chunk) => Acc.collect(chunk))
-		.on('connect', () => socket.write(`${user} is now online.`)
-		.on('end', () => console.log("client disconnected"))
-		.listen(3000, () => console.log("Server online")));
+	socket.on('data', (chunk) => Acc.collect(chunk));
+	socket.on('connect', () => socket.write(`${user} is now online.`));
+	socket.on('end', () => console.log("client disconnected"));
+
+
+
+	/**
+	 * @callback
+	 *
+	 * @param {number} type
+	 *	type represents the action being done by user
+	 *
+	 * @param {Object} payload 
+	 *	payload is an object that contains data based on the action being invoked
+	 *	payload {
+	 *		to? - when the user is sending a message, or friend request
+	 *		roomId? - when the user is sending a message to a group larger than 3 (user + 2 people)
+	 *		body - the body is the main content that differs depending on what method is being called. But the shape will always be an Object
+	 *	}
+	*/
 
 		Acc.on('payload', async ({type, payload}) => {
 			switch(type){
@@ -70,4 +83,4 @@ const server = net.createServer((socket) => {
 				break;
 			}
 		})
-	})
+	}).listen(3000, () => console.log("server online"))

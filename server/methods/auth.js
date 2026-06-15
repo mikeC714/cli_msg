@@ -1,5 +1,5 @@
 const { db } = require("../config/postgresql.config.js");
-const bcyrpt = require("bcrypt"); 
+const bcrypt = require("bcrypt"); 
 
 
 export const USERS = new Map();
@@ -49,7 +49,7 @@ export default{
 				WHERE username = $1
 			`,[username]
 			);
-			const valid = await bcyrpt.compare(password, results.rows[0].password);
+			const valid = await bcrypt.compare(password, results.rows[0].password);
 			if(!valid) throw new Error("Invalid credentials");
 			return results.rows[0].username;
 		}catch(err){

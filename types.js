@@ -17,4 +17,4 @@ const TYPES = {
 }
 
 
-module.exports = { HEADER_SIZE, MAGIC, LENGTH, TYPES };
+module.exports = { HEADER_SIZE, MAGIC, TYPES };

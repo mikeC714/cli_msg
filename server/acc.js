@@ -14,13 +14,12 @@ class Acc extends EventEmitter{
 	 */
 
 	collect(chunk){
-		console.log({ chunk: chunk.toString('hex') });
 		this.buffer = Buffer.concat([this.buffer, chunk]);
 		this.process();
 	}
 
 	/**
-	 * THIS FUNCTION IS CALLED INORDER TO PROCESS CHUNKS WHEN LENGTH IS MET
+	 * THIS FUNCTION IS CALLED IN ORDER TO PROCESS CHUNKS WHEN LENGTH IS MET
 	 * TO PREVENT ANY HICCUPS THE PAYLOAD BUFFER LENGTH IS COMPARED TO VERIFY THAT IT'S FULL BEFORE
 	* PROCESSING AND PASSED TO BE PARSED
 	 */
@@ -61,7 +60,7 @@ class Acc extends EventEmitter{
 		payload = payload.toString('utf-8');
 		try{
 			payload = JSON.parse(payload);
-			this.emit('data',{type, payload})
+			this.emit('payload',{type, payload})
 		}catch(err){
 
 		}
