@@ -1,7 +1,6 @@
 
 const HEADER_SIZE = 7;
 const MAGIC = 0x8008;
-const LENGTH = 4;
 
 const TYPES = {
 	REGISTER: 0x01,
