@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert");
 const { Acc } = require("../acc.js");
-const { MAGIC, TYPES } = require("../../types.js");
+const { MAGIC, TYPES } = require("../../utils/types.js");
 
 
 test.describe("Testing Accumulator", () => {

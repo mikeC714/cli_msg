@@ -59,10 +59,11 @@ class Acc extends EventEmitter{
 	parse(payload, type){
 		payload = payload.toString('utf-8');
 		try{
-			payload = JSON.parse(payload);
+			payload = JSON.parse(payload)
 			this.emit('payload',{type, payload})
 		}catch(err){
-
+			console.error(err.message)
+			this.emit('error', new Error(err));
 		}
 	}
 }
